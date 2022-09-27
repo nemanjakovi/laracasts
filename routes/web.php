@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -23,24 +23,13 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    \Illuminate\Support\Facades\DB::listen(function ($query) {
-        logger($query->sql);
-    });
-
-    return view("posts", [
-        "posts" => Post::latest()->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 
-Route::get('posts/{post:slug}', function (Post $post) {
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-    return view("post", [
-        "post" => $post
-    ]);
-});
+
+
 
 Route::get('categories/{category:slug}', function (Category $category) {
 
