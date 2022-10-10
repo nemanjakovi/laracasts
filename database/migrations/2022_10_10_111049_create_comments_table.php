@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        // Schema::dropIfExists('comments');
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_id');
-            $table->string('slug')->unique();
-            $table->string('title');
-            $table->text('excerpt');
+            $table->unsignedBigInteger('post_id')->constrained()->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id')->constrained()->cascadeOnDelete();
             $table->text('body');
             $table->timestamps();
-            $table->timestamp('published_at')->nullable();
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

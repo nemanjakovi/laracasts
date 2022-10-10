@@ -23,14 +23,13 @@ class SessionController extends Controller
         ]);
 
         if (auth()->attempt($attributes)) {
-            session()->regenerate();
-
-            return redirect('/')->with('success', 'Welcome back');
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentials could not be verified.'
+            ]);
         }
+        session()->regenerate();
 
-        throw ValidationException::withMessages([
-            'email' => 'Your provided credentials could not be verified.'
-        ]);
+        return redirect('/')->with('success', 'Welcome back');
 
         return back()
             ->withInput()

@@ -35,20 +35,18 @@ class Post extends Model
             $query->whereHas('author', fn ($query) =>
             $query->where('username', $author))
         );
-
-
-        // $query
-        //     ->whereExists(fn ($query) =>
-        //     $query->from('category')
-        //         ->whereColum('category.id', 'posts.category_id')
-        //         ->where('category.slug',  $category))
-
     }
 
     public function getRouteKeyName()
     {
         return parent::getRouteKeyName();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
     public function category()
     {
