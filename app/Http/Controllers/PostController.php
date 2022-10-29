@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Validation\Rule;
 
+
 class PostController extends Controller
 {
     public function index()
@@ -33,8 +34,12 @@ class PostController extends Controller
 
     public function store()
     {
+
+
+
         $attributes = request()->validate([
             'title' => 'required',
+            'thumbnail' => 'required|image',
             'slug' => [Rule::unique('posts', 'slug')],
             'excerpt' => 'required',
             'body' => 'required',
@@ -42,6 +47,7 @@ class PostController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnail');
 
         Post::create($attributes);
 

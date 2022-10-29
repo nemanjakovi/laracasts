@@ -8,6 +8,7 @@
     <div>
         <header class="mb-4">
             
+        
             <h3 class="font-bold">{{ $comment->author->username }}</h3>
             <p class="text-xs">Posted 8 monts ago </p>
             <time>{{ $comment->created_at->format("F j, Y, g:i a") }}</time>

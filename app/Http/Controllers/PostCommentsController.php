@@ -9,18 +9,13 @@ class PostCommentsController extends Controller
 {
     public function store(Post $post)
     {
-
-        // vlaidateion
         request()->validate([
             'body' => 'required'
-
         ]);
 
         $post->comments()->create([
-
-            'body' => request('body'),
-            'user_id' => request()->user()->id
-
+            'user_id' => request()->user()->id,
+            'body' => request('body')
         ]);
 
         return back();
