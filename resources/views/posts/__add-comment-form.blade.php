@@ -14,20 +14,13 @@
             <h2 class="ml-3">Want to participate?</h2>
         </header>
 
-        <div class="mt-6">
-            <textarea 
-            name="body" 
-            class="w-full text-sm" 
-            rows="5" 
-            placeholder="Quick, thing of something to say!" 
-            required></textarea>
-        </div>
+        <x-form.fild>
+            <x-form.textarea name="body" />
+        </x-form.fild>
 
-        @error('body')
-        <span class='text-red-500 text-xs mt-1'>{{ $message }}</span>
-        @enderror
+        <x-form.error name="body"/>
 
-       <x-submit-button>Post</x-submit-button>
+       <x-form.button>Post</x-form.button>
         
         </form>
 
