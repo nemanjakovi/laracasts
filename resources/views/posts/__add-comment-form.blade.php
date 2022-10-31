@@ -14,9 +14,9 @@
             <h2 class="ml-3">Want to participate?</h2>
         </header>
 
-        <x-form.fild>
+        <x-form.field>
             <x-form.textarea name="body" />
-        </x-form.fild>
+        </x-form.field>
 
         <x-form.error name="body"/>
 
