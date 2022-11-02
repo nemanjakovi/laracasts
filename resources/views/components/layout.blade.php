@@ -45,7 +45,7 @@
 
                     </x-slot>
                     
-                   
+                   @if (auth()->user()->can('admin'))
                             <x-dropdown-item
                                 href="/admin/posts"
                                 :active="request()->is('admin/posts')"
@@ -58,7 +58,7 @@
                             >
                                 New Post
                             </x-dropdown-item>
-                        
+                        @endif
 
                         <x-dropdown-item
                             href="#"
